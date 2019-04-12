@@ -47,12 +47,12 @@ namespace SpecflowTests.AcceptanceTest
         [Then(@"that language should be displayed on my listings")]
         public void ThenThatLanguageShouldBeDisplayedOnMyListings()
         {
-            try
-            {
+            //try
+            //{
                 //Start the Reports
-                CommonMethods.ExtentReports();
+                //CommonMethods.ExtentReports();
                 Thread.Sleep(1000);
-                CommonMethods.test = CommonMethods.extent.StartTest("Add a Language");
+                //CommonMethods.test = CommonMethods.extent.StartTest("Add a Language");
 
                 Thread.Sleep(1000);
                 string ExpectedValue = "English";
@@ -60,20 +60,23 @@ namespace SpecflowTests.AcceptanceTest
                 Thread.Sleep(500);
                 if(ExpectedValue == ActualValue)
                 {
-                    CommonMethods.test.Log(LogStatus.Pass, "Test Passed, Added a Language Successfully");
-                    SaveScreenShotClass.SaveScreenshot(Driver.driver, "LanguageAdded");
+                //CommonMethods.test.Log(LogStatus.Pass, "Test Passed, Added a Language Successfully");
+                //SaveScreenShotClass.SaveScreenshot(Driver.driver, "LanguageAdded");
+                Console.WriteLine("Test Passed");
                 }
 
                 else
-                    CommonMethods.test.Log(LogStatus.Fail, "Test Failed");
+                Console.WriteLine("Test Failed");
 
-            }
-            catch(Exception e)
-            {
-                CommonMethods.test.Log(LogStatus.Fail, "Test Failed",e.Message);
-            }
+            //CommonMethods.test.Log(LogStatus.Fail, "Test Failed");
 
-             
+            //}
+            //catch(Exception e)
+            //{
+            //    CommonMethods.test.Log(LogStatus.Fail, "Test Failed",e.Message);
+            //}
+
+
 
         }
     }

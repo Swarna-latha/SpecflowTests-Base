@@ -31,7 +31,7 @@ Scenario: Check if user is able to edit a Lanuage level
 	Scenario: Check if user could able add multiple skills
 	Given I clicked on the skill tab under Profile page
 	When I add a new skill
-	Then that skill should be displayed on my listings
+	Then that new skill should be displayed on my listings
 
 @mytag
 	Scenario: Check if user could edit a skill

@@ -3,6 +3,7 @@ using SpecflowPages;
 using System;
 using System.Threading;
 using TechTalk.SpecFlow;
+using static NUnit.Core.NUnitFramework;
 
 namespace SpecflowTests.AcceptanceTest
 {
@@ -27,11 +28,11 @@ namespace SpecflowTests.AcceptanceTest
         public void GivenIClickedOnTheSkillTabUnderProfilePage()
         {
             //Wait
-            Thread.Sleep(1500);
-
-            // Click on Skill tab
+            Thread.Sleep(7000);
             Driver.driver.FindElement(By.XPath("//a[contains(text(),'Skills')]")).Click();
 
+            
+           
         }
 
         [When(@"I add a skill")]
@@ -55,7 +56,17 @@ namespace SpecflowTests.AcceptanceTest
         [Then(@"that skill should be displayed on my listings")]
         public void ThenThatSkillShouldBeDisplayedOnMyListings()
         {
-            ScenarioContext.Current.Pending();
+            //asser that the skill is added
+            Thread.Sleep(2000);
+            var expText = Driver.driver.FindElement(By.XPath("//td[text()='Automation Testing']")).Text;
+            Console.WriteLine("expText"  + expText);
+            if (expText == "Automation Testing")
+            {
+                Console.WriteLine("Test Passed");
+            }
+            else
+                Console.WriteLine("Test Failed");
+            //Assert.AreEqual("Automation Testing", expText);
         }
 
         [Given(@"I clicked on the Education tab under Profile page")]
@@ -94,9 +105,36 @@ namespace SpecflowTests.AcceptanceTest
         [When(@"I add a new skill")]
         public void WhenIAddANewSkill()
         {
-            ScenarioContext.Current.Pending();
+            //Add new skill
+            Driver.driver.FindElement(By.XPath("//div[@class='ui teal button']")).Click();
+
+            //Add skill
+            Driver.driver.FindElement(By.XPath("//input[@placeholder='Add Skill']")).SendKeys("Manual Testing");
+
+            //Choose the skill level
+
+            Driver.driver.FindElements(By.XPath("//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/div/div[2]/select/option"))[2].Click();
+
+            //Final add
+            Driver.driver.FindElement(By.XPath("//input[@value='Add']")).Click();
         }
-        
+
+        [Then(@"that new skill should be displayed on my listings")]
+        public void ThenThatNewSkillShouldBeDisplayedOnMyListings()
+        {
+            //asser that the skill is added
+            Thread.Sleep(2000);
+            var expText = Driver.driver.FindElement(By.XPath("//td[text()='Automation Testing']")).Text;
+            Console.WriteLine("expText" + expText);
+            if (expText == "Manual Testing")
+            {
+                Console.WriteLine("Test Passed");
+            }
+            else
+                Console.WriteLine("Test Failed");
+        }
+
+
         [When(@"I change a skill level")]
         public void WhenIChangeASkillLevel()
         {
